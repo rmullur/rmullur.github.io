@@ -1,7 +1,7 @@
 title: Rishi's Blog
-author: Rishi
-email: test@gmail.com
-description: Hard work always pays off.
+author: Rishi Mullur
+email: rishirm@uw.com
+description: A digital garden
 url: "https://rishim.xyz/"
 
 # Build settings
@@ -10,12 +10,9 @@ plugins:
   - jekyll-feed
 
 moving:
-  about_you: Hard work always pays off
+  about_you: building and breaking things.
   avatar_url: avatar.jpg
   date_format: "%b %d"
   back_to: "Index"
   social_links:
-    rss: RSS
-    # github: huangyz0918
-    # facebook: huangyz0918
     linkedin: rishimullur
