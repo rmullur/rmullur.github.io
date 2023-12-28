@@ -1,13 +1,12 @@
 title: Rishi Mullur
 author: Rishi Mullur
 # email: rishirm@uw.com
-description: >
-Building my own (h/t "<a href="https://maggieappleton.com/garden-history">digital garden</a>). More about me <a href="https://rishim.xyz/about">here</a>."
-url: "https://rishim.xyz/"
+description: Building my own (h/t <a href="https://maggieappleton.com/garden-history">digital garden</a>). More about me <a href="https://rishim.xyz/about>here</a>.
+url: "https://rishim.xyz"
 show_excerpts: true # set to true to show excerpts on the homepage
 
 # Build settings
-remote_theme: rmullur/moving
+remote_theme: huangyz0918/moving
 plugins:
   - jekyll-feed
 
