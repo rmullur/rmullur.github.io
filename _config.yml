@@ -1,7 +1,7 @@
-title: Rishi's Blog
+title: Rishi Mullur
 author: Rishi Mullur
-email: rishirm@uw.com
-description: A digital garden
+# email: rishirm@uw.com
+description: Building my own digital garden (h/t <a href="https://tomcritchlow.com/2018/02/23/building-digital-garden/">Tom Critchlow</a>).  More about me <a href="https://rishim.xyz/about">here</a>.
 url: "https://rishim.xyz/"
 
 # Build settings
@@ -10,7 +10,7 @@ plugins:
   - jekyll-feed
 
 moving:
-  about_you: building and breaking things.
+  about_you: building and breaking things. currently pursuing a masters program at the university of washington.
   avatar_url: avatar.jpg
   date_format: "%b %d"
   back_to: "Index"
