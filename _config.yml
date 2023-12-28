@@ -1,4 +1,4 @@
-title: Blog # The title of the blog
+title: Rishi Mullur # The title of the blog
 author: Your Name # Your name
 email: your-email@domain.com # your email shown in the footer
 url: "https://rishirm.xyz" #this is your site's root address.
@@ -16,23 +16,23 @@ moving:
   back_to: "Home" # In the post page, you have a back button above the title, you can custom the text by yourself.
 
   # # generate social links in about page.
-  # social_links:
-  #   # twitter:
-  #   github: huangyz0918
-  #   rss: RSS
-  #   # dribbble:
-  #   facebook: huangyz0918
-  #   # flickr:
-  #   # instagram:
-  #   linkedin: yizheng-huang
-  #   # pinterest:
-  #   # youtube:
-  #   # youtube_channel:
-  #   # youtube_channel_name:
-  #   # telegram:
-  #   # googleplus:
-  #   # microdotblog:
-  #   # reddit:
+  social_links:
+    # twitter:
+    # github: huangyz0918
+    # rss: RSS
+    # # dribbble:
+    # facebook: huangyz0918
+    # flickr:
+    # instagram:
+    linkedin: rishimullur
+    # pinterest:
+    # youtube:
+    # youtube_channel:
+    # youtube_channel_name:
+    # telegram:
+    # googleplus:
+    # microdotblog:
+    # reddit:
 
   #   # Mastodon instances
   #   # mastodon:
