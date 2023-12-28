@@ -8,7 +8,7 @@ layout: default
   </head>
   <div class="home-title">
     <p class="home-heading">{{ site.title }}</p>
-    <p class="home-sub-heading">{{- site.description | escape -}}</p>
+    <p class="home-sub-heading"  href="{{ site.url | relative_url }}">{{- site.description -}}</p>
   </div>
 
   {%- if site.posts.size > 0 -%}
