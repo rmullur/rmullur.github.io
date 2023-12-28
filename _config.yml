@@ -6,7 +6,7 @@ url: "https://rishim.xyz"
 show_excerpts: true # set to true to show excerpts on the homepage
 
 # Build settings
-remote_theme: huangyz0918/moving
+remote_theme: rmullur/moving
 plugins:
   - jekyll-feed
 
