@@ -5,7 +5,7 @@ description: Building my own (h/t "<a href="https://maggieappleton.com/garden-hi
 url: "https://rishim.xyz/"
 
 # Build settings
-remote_theme: huangyz0918/moving
+remote_theme: rmullur/moving
 plugins:
   - jekyll-feed
 
