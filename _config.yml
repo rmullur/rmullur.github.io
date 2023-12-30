@@ -12,7 +12,7 @@ plugins:
   - jekyll-feed
 
 moving:
-  about_you:  currently pursuing a graduate program in Technology Innovation at the university of washington. previously been a programmer, a product manager and a entrepreneur. Usually found reading one of the many pending books from my bookshelf. you can find my writings <a href="https://haecceity.substack.com/">here</a>.   
+  about_you:  Currently pursuing a graduate program in technology innovation (CS) at the university of washington. previously a programmer, a product manager and a entrepreneur. Usually found reading one of the many pending books from my bookshelf.     You can find my writings <a href="https://haecceity.substack.com/">here</a>.   
   avatar_url: IMG_0004.JPG
   date_format: "%b %d"
   back_to: "Home"
