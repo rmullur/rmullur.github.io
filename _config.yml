@@ -3,6 +3,7 @@ author: Rishi Mullur
 email: rishirm@uw.com
 description: 
 url: "https://rishim.xyz"
+favicon: favicon.ico
 # show_excerpts: true # set to true to show excerpts on the homepage
 
 # Build settings
@@ -11,7 +12,10 @@ plugins:
   - jekyll-feed
 
 moving:
-  about_you: creating my own <a href="https://maggieappleton.com/garden-history">digital garden</a>. building and breaking things. currently pursuing a masters program at the university of washington. you can find my writings <a href="https://haecceity.substack.com/">here</a>.   
+  about_you:  currently pursuing a graduate program in Technology Innovation at the university of washington. previously been a programmer, a product manager and a entrepreneur. Usually found reading one of the many pending books from my bookshelf. 
+  
+  
+  you can find my writings <a href="https://haecceity.substack.com/">here</a>.   
   avatar_url: IMG_0004.JPG
   date_format: "%b %d"
   back_to: "Home"
