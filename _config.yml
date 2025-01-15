@@ -14,7 +14,7 @@ plugins:
   - jekyll-feed
 
 moving:
-  about_you:  Currently pursuing a graduate program in <a href="https://gix.uw.edu/program/msti/">technology innovation</a> at university of washington. Previously a programmer, a product manager and a entrepreneur. Usually found reading one of the many pending books from my bookshelf.     You can find my writings <a href="https://haecceity.substack.com/">here</a>.   
+  about_you:  Currently pursuing a graduate program in <a href="https://gix.uw.edu/program/msti/">technology innovation</a> at university of washington. Previously a programmer, a product manager and an entrepreneur. Usually found reading one of the many pending books from my bookshelf.     You can find my writings <a href="https://haecceity.substack.com/">here</a>.   
   avatar_url: Rishi_Mullur.jpg
   date_format: "%b %d"
   back_to: "Home"
