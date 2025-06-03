@@ -16,7 +16,7 @@ plugins:
   - jekyll-feed
 
 moving:
-  about_you:  Currently pursuing a graduate program in <a href="https://gix.uw.edu/program/msti/">technology innovation</a> at university of washington. Previously a programmer, a product manager and an entrepreneur. Usually found reading one of the many pending books from my bookshelf.     You can find my writings <a href="https://haecceity.substack.com/">here</a>.   
+  about_you: I build things - mostly software, sometimes systems. I’ve been a programmer, a PM, and a founder, depending on what needed to get built. Usually found working through one of the many unread books on my shelf. Occasionally, I write - some of it is <a href="https://haecceity.substack.com/">here</a>.   
   avatar_url: Rishi_Mullur.jpg
   date_format: "%b %d"
   back_to: "Home"
