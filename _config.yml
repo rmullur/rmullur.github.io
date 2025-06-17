@@ -8,7 +8,7 @@ google_analytics: G-E1H2LTYD9D
 
  # Path to the resume PDF
 resume:
-  path: "/resume/Rishi-Mullur-Resume.pdf"
+  path: "Rishi-SWE-Resume-Jun.pdf"
 
 # Build settings
 remote_theme: rmullur/minmax
