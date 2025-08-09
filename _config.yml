@@ -16,7 +16,7 @@ moving:
   avatar_url: Rishi_Mullur.jpg
   date_format: "%b %d"
   back_to: "Home"
-  resume_path: "resume/Rishi-Mullur-Resume.pdf"
+  resume_path: "/resume/Rishi-Mullur-Resume.pdf"
   social_links:
     linkedin: rishimullur
     twitter: rishimullur
