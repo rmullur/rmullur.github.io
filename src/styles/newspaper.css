@@ -74,7 +74,7 @@ body {
 
 /* ─── Page Container: The Newspaper ─── */
 .page-wrapper {
-  max-width: min(900px, calc(100% - 4rem));
+  max-width: min(1440px, calc(100% - 4rem));
   margin: 2rem auto;
   padding: var(--space-2xl) var(--space-2xl);
   min-height: calc(100vh - 4rem);
@@ -549,7 +549,7 @@ pre code {
 }
 
 /* ─── Responsive Design ─── */
-@media (max-width: 900px) {
+@media (max-width: 1480px) {
   .page-wrapper {
     max-width: calc(100% - 2rem);
     margin: 1rem auto;
