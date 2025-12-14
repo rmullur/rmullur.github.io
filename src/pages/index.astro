@@ -120,9 +120,33 @@ const hasPosts = posts.length > 0;
     max-width: 100%;
   }
 
-  /* About Section */
+  /* About Section - Victorian Profile Box */
   .about-section {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg);
+    border: 2px solid var(--border-dark);
+    background: var(--paper-light);
+    position: relative;
+  }
+
+  /* Decorative corner marks */
+  .about-section::before,
+  .about-section::after {
+    content: '✦';
+    position: absolute;
+    font-size: 0.7rem;
+    color: var(--border-dark);
+    opacity: 0.6;
+  }
+  
+  .about-section::before {
+    top: 8px;
+    left: 8px;
+  }
+  
+  .about-section::after {
+    bottom: 8px;
+    right: 8px;
   }
 
   .about-content {
@@ -131,15 +155,19 @@ const hasPosts = posts.length > 0;
     align-items: flex-start;
   }
 
-  /* Portrait */
+  /* Portrait - Victorian Oval Frame */
   .portrait-container {
     flex-shrink: 0;
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    padding: 4px;
-    background: var(--paper-light);
-    border: 2px solid var(--border-dark);
+    padding: 5px;
+    background: linear-gradient(135deg, var(--paper-bg) 0%, var(--paper-dark) 100%);
+    border: 3px solid var(--border-dark);
+    box-shadow: 
+      inset 0 0 0 2px var(--paper-light),
+      inset 0 0 0 4px var(--border-medium),
+      0 4px 8px rgba(0,0,0,0.15);
   }
 
   .author-portrait {
@@ -147,7 +175,7 @@ const hasPosts = posts.length > 0;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    filter: sepia(15%) contrast(1.05);
+    filter: sepia(25%) contrast(1.1) brightness(0.95);
     display: block;
   }
 
@@ -157,11 +185,12 @@ const hasPosts = posts.length > 0;
 
   .about-headline {
     font-family: var(--font-headline);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     margin-bottom: var(--space-xs);
+    text-align: center;
   }
 
   .about-text :global(.ornament) {
@@ -170,30 +199,37 @@ const hasPosts = posts.length > 0;
 
   .about-bio {
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: var(--ink-dark);
     text-align: justify;
     margin: 0;
+    text-indent: 0;
   }
 
   .about-bio .drop-cap {
-    font-size: 3rem;
-    line-height: 0.8;
-    padding-right: var(--space-xs);
+    font-family: var(--font-decorative);
+    font-size: 3.5rem;
+    line-height: 0.75;
+    padding-right: var(--space-sm);
     color: var(--accent-red);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
   }
 
   /* Coming Soon Section */
   .coming-soon {
     text-align: center;
-    padding: var(--space-xl) 0;
+    padding: var(--space-2xl) 0;
+    border: 1px dashed var(--border-medium);
+    margin: var(--space-lg) 0;
   }
 
   .coming-soon-text {
+    font-family: var(--font-body);
     font-style: italic;
     color: var(--ink-faded);
     font-size: 1.1rem;
     text-align: center;
+    letter-spacing: 0.05em;
   }
 
   /* Featured Section */
@@ -207,24 +243,52 @@ const hasPosts = posts.length > 0;
   }
 
   .article-list {
-    border-top: 1px solid var(--border-medium);
-    border-bottom: 1px solid var(--border-medium);
+    border-top: 2px solid var(--border-dark);
+    border-bottom: 2px solid var(--border-dark);
     padding: var(--space-sm) 0;
+    position: relative;
+  }
+  
+  .article-list::before,
+  .article-list::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-medium);
+  }
+  
+  .article-list::before {
+    top: 3px;
+  }
+  
+  .article-list::after {
+    bottom: 3px;
   }
 
   .view-all {
     text-align: center;
-    margin-top: var(--space-md);
+    margin-top: var(--space-lg);
   }
 
   .view-all a {
     font-family: var(--font-meta);
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    padding: var(--space-xs) var(--space-md);
+    border: 1px solid var(--border-medium);
+    background: var(--paper-light);
+    transition: all 0.2s ease;
+  }
+  
+  .view-all a:hover {
+    background: var(--paper-bg);
+    border-color: var(--accent-red);
   }
 
-  /* Notices Section - Victorian Ad Boxes */
+  /* Notices Section - Victorian Classified Ads */
   .notices-section {
     margin-bottom: var(--space-xl);
   }
@@ -237,31 +301,45 @@ const hasPosts = posts.length > 0;
 
   .notice-box {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-lg) var(--space-md);
     border: 2px solid var(--border-dark);
     background: var(--paper-light);
     position: relative;
     transition: all 0.2s ease;
   }
 
-  /* Decorative inner border */
+  /* Victorian decorative frame */
   .notice-box::before {
     content: '';
     position: absolute;
-    top: 4px;
-    left: 4px;
-    right: 4px;
-    bottom: 4px;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
     border: 1px solid var(--border-medium);
     pointer-events: none;
+  }
+  
+  .notice-box::after {
+    content: '✦';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.5rem;
+    color: var(--border-dark);
+    opacity: 0.6;
   }
 
   .notice-box:hover {
     background: var(--paper-bg);
     border-color: var(--accent-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 
   .notice-box:hover .notice-label {
@@ -270,18 +348,20 @@ const hasPosts = posts.length > 0;
 
   .notice-label {
     font-family: var(--font-headline);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--ink-black);
     transition: color 0.2s ease;
+    margin-top: var(--space-xs);
   }
 
   /* Footer */
   .site-footer {
     text-align: center;
     padding-top: var(--space-md);
+    margin-top: var(--space-2xl);
   }
 
   .site-footer :global(.ornament) {
@@ -292,13 +372,21 @@ const hasPosts = posts.length > 0;
     font-family: var(--font-meta);
     font-size: 0.8rem;
     color: var(--ink-faded);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   /* Responsive */
+  @media (max-width: 768px) {
+    .notices-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 600px) {
     .about-section {
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
+      padding: var(--space-md);
     }
     
     .about-content {
@@ -309,31 +397,30 @@ const hasPosts = posts.length > 0;
     }
 
     .portrait-container {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 0;
+      width: 120px;
+      height: 120px;
     }
 
     .about-headline {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .about-bio {
       text-align: center;
-      font-size: 0.9rem;
-      line-height: 1.7;
+      font-size: 0.95rem;
+      line-height: 1.75;
     }
 
     .about-bio .drop-cap {
       float: none;
       display: block;
-      font-size: 2rem;
+      font-size: 2.5rem;
       padding: 0;
       margin-bottom: var(--space-xs);
     }
 
     .coming-soon {
-      padding: var(--space-md) 0;
+      padding: var(--space-lg) var(--space-md);
     }
 
     .coming-soon-text {
@@ -346,11 +433,12 @@ const hasPosts = posts.length > 0;
     }
 
     .notice-box {
-      padding: var(--space-sm) var(--space-md);
+      padding: var(--space-md) var(--space-sm);
     }
 
     .notice-label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
     }
 
     .site-footer {
@@ -364,11 +452,11 @@ const hasPosts = posts.length > 0;
 
   @media (max-width: 400px) {
     .notices-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
     }
     
     .notice-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.05em;
     }
   }

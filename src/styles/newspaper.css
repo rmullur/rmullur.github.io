@@ -1,37 +1,41 @@
 /* ═══════════════════════════════════════════════════════════════
-   NEWSPAPER DESIGN SYSTEM
-   Victorian-era newspaper aesthetic with sepia/aged paper tones
+   VICTORIAN NEWSPAPER DESIGN SYSTEM
+   Authentic 19th century broadsheet aesthetic
    ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Color Palette ─── */
+/* ─── Color Palette: Aged Newsprint ─── */
 :root {
-  /* Paper & Background */
-  --paper-bg: #f4e4c1;
-  --paper-light: #f9f1e1;
-  --paper-dark: #e8d4a8;
-  --paper-edge: #d4c4a0;
+  /* Paper & Background - Aged yellowed newsprint */
+  --paper-bg: #f5e6c8;
+  --paper-light: #faf3e3;
+  --paper-dark: #e5d4b0;
+  --paper-edge: #d4c195;
+  --paper-stain: rgba(180, 140, 80, 0.08);
   
-  /* Ink Colors */
-  --ink-black: #2c2416;
-  --ink-dark: #3d3222;
-  --ink-medium: #5c4a32;
-  --ink-faded: #7a6a52;
-  --ink-light: #9a8a6a;
+  /* Ink Colors - Period-accurate printing ink */
+  --ink-black: #1a1410;
+  --ink-dark: #2d251c;
+  --ink-medium: #4a3d2e;
+  --ink-faded: #6b5d4a;
+  --ink-light: #8a7a64;
   
-  /* Accent Colors */
-  --accent-red: #8b2500;
-  --accent-red-dark: #6b1d00;
+  /* Accent - Deep red common in Victorian printing */
+  --accent-red: #7b1818;
+  --accent-red-dark: #5a1010;
   
-  /* Borders & Lines */
-  --border-dark: #3d3222;
-  --border-medium: #6d5d42;
-  --border-light: #a99a7a;
+  /* Borders & Decorative Rules */
+  --border-dark: #2d251c;
+  --border-medium: #5a4d3a;
+  --border-light: #8a7a64;
+  --border-decorative: #3d3222;
   
-  /* Typography */
+  /* Typography - Victorian Newspaper Fonts */
   --font-masthead: 'Cinzel Decorative', 'Times New Roman', serif;
   --font-headline: 'Playfair Display', 'Georgia', serif;
   --font-body: 'Libre Baskerville', 'Baskerville', 'Georgia', serif;
   --font-meta: 'Cormorant SC', 'Georgia', serif;
+  --font-decorative: 'Playfair Display', 'Georgia', serif;
+  --font-script: 'Libre Baskerville', serif;
   
   /* Spacing */
   --space-xs: 0.25rem;
@@ -57,53 +61,77 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--paper-dark);
+  background-color: #3d3222;
   color: var(--ink-black);
-  line-height: 1.7;
+  line-height: 1.75;
   min-height: 100vh;
+  /* Subtle wood grain texture for desk effect */
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
-/* ─── Page Container ─── */
+/* ─── Page Container: The Newspaper ─── */
 .page-wrapper {
-  max-width: calc(100% - 6rem);
-  margin: 2rem 3rem;
-  padding: var(--space-xl) var(--space-3xl);
+  max-width: min(900px, calc(100% - 4rem));
+  margin: 2rem auto;
+  padding: var(--space-2xl) var(--space-2xl);
   min-height: calc(100vh - 4rem);
   
-  /* Paper background - clean with subtle gradient */
+  /* Aged paper background with stains and wear */
   background-color: var(--paper-bg);
-  background-image: linear-gradient(180deg, var(--paper-light) 0%, var(--paper-bg) 15%, var(--paper-bg) 85%, var(--paper-dark) 100%);
+  background-image: 
+    /* Coffee stain effect */
+    radial-gradient(ellipse at 15% 25%, var(--paper-stain) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 75%, var(--paper-stain) 0%, transparent 40%),
+    /* Paper grain texture */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"),
+    /* Gradient for aged edges */
+    linear-gradient(180deg, 
+      var(--paper-light) 0%, 
+      var(--paper-bg) 8%, 
+      var(--paper-bg) 92%, 
+      var(--paper-dark) 100%
+    );
   
-  /* Decorative page border */
-  border: 3px solid var(--border-dark);
+  /* Victorian ornate border - triple rule */
+  border: 1px solid var(--border-dark);
+  outline: 3px solid var(--border-dark);
+  outline-offset: 4px;
+  
   box-shadow: 
-    inset 0 0 0 1px var(--paper-bg),
-    inset 0 0 0 4px var(--border-medium),
-    inset 0 0 0 5px var(--paper-bg),
-    inset 0 0 0 6px var(--border-light),
-    0 4px 20px rgba(0, 0, 0, 0.15);
+    /* Inner decorative effect */
+    inset 0 0 60px rgba(180, 140, 80, 0.15),
+    /* Page shadow on desk */
+    0 0 0 1px var(--paper-edge),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    /* Slight page lift effect */
+    4px 4px 0 rgba(0, 0, 0, 0.05);
   
   position: relative;
 }
 
-/* Corner flourishes for page */
+/* Decorative corner flourishes */
 .page-wrapper::before,
 .page-wrapper::after {
   content: '❧';
   position: absolute;
-  font-size: 1.5rem;
-  color: var(--border-dark);
-  opacity: 0.6;
+  font-size: 1.8rem;
+  color: var(--border-decorative);
+  opacity: 0.5;
+  font-family: serif;
 }
 
 .page-wrapper::before {
-  top: 12px;
-  left: 12px;
+  top: 16px;
+  left: 16px;
 }
 
 .page-wrapper::after {
-  bottom: 12px;
-  right: 12px;
+  bottom: 16px;
+  right: 16px;
   transform: rotate(180deg);
 }
 
@@ -111,22 +139,25 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--ink-black);
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 h2 {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   margin-bottom: var(--space-md);
 }
 
 h3 {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   margin-bottom: var(--space-sm);
 }
 
@@ -134,13 +165,18 @@ p {
   margin-bottom: var(--space-md);
   text-align: justify;
   hyphens: auto;
+  text-indent: 1.5em;
+}
+
+p:first-of-type {
+  text-indent: 0;
 }
 
 /* ─── Links ─── */
 a {
   color: var(--ink-black);
   text-decoration: none;
-  border-bottom: 1px solid var(--border-medium);
+  border-bottom: 1px solid var(--border-light);
   transition: all 0.2s ease;
 }
 
@@ -165,40 +201,59 @@ a:hover {
 
 .rule-double {
   border: none;
-  height: 4px;
+  height: 5px;
   background: 
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       var(--border-dark) 0px,
       var(--border-dark) 1px,
       transparent 1px,
+      transparent 2px,
+      var(--border-medium) 2px,
+      var(--border-medium) 3px,
       transparent 3px,
-      var(--border-dark) 3px,
-      var(--border-dark) 4px
+      transparent 4px,
+      var(--border-dark) 4px,
+      var(--border-dark) 5px
     );
   margin: var(--space-lg) 0;
 }
 
 .rule-ornate {
   border: none;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M0 10 L80 10 M120 10 L200 10' stroke='%233d3222' stroke-width='1' fill='none'/%3E%3Ccircle cx='100' cy='10' r='3' fill='%233d3222'/%3E%3Ccircle cx='90' cy='10' r='1.5' fill='%233d3222'/%3E%3Ccircle cx='110' cy='10' r='1.5' fill='%233d3222'/%3E%3C/svg%3E");
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 30'%3E%3Cpath d='M0 15 L140 15 M260 15 L400 15' stroke='%232d251c' stroke-width='1' fill='none'/%3E%3Cpath d='M150 15 L165 8 L180 15 L195 8 L210 15 L225 8 L240 15 L250 15' stroke='%232d251c' stroke-width='1' fill='none'/%3E%3Cpath d='M150 15 L165 22 L180 15 L195 22 L210 15 L225 22 L240 15' stroke='%232d251c' stroke-width='1' fill='none'/%3E%3Ccircle cx='200' cy='15' r='4' fill='%232d251c'/%3E%3Ccircle cx='175' cy='15' r='2' fill='%232d251c'/%3E%3Ccircle cx='225' cy='15' r='2' fill='%232d251c'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   margin: var(--space-xl) 0;
 }
 
-/* ─── Drop Cap ─── */
+/* Victorian decorative divider */
+.victorian-divider {
+  text-align: center;
+  margin: var(--space-xl) 0;
+  font-size: 1.2rem;
+  color: var(--border-decorative);
+  letter-spacing: 0.5em;
+}
+
+/* ─── Drop Cap: Victorian Style ─── */
 .drop-cap {
   float: left;
-  font-family: var(--font-headline);
-  font-size: 4rem;
-  line-height: 0.8;
+  font-family: var(--font-decorative);
+  font-size: 4.5rem;
+  line-height: 0.75;
   padding-right: var(--space-sm);
-  padding-top: 0.1em;
+  padding-top: 0.15em;
+  color: var(--ink-black);
+  font-weight: 400;
+  /* Slight shadow for depth */
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+/* Alternate red drop cap */
+.drop-cap-red {
   color: var(--accent-red);
-  font-weight: 700;
 }
 
 /* ─── Article Styles ─── */
@@ -208,27 +263,30 @@ a:hover {
 
 .article-headline {
   font-family: var(--font-headline);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: var(--space-sm);
-  line-height: 1.3;
+  margin-bottom: var(--space-xs);
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .article-subheadline {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.05rem;
   text-align: center;
   color: var(--ink-medium);
   margin-bottom: var(--space-lg);
+  letter-spacing: 0.02em;
 }
 
 .article-meta {
   font-family: var(--font-meta);
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--ink-faded);
   text-align: center;
   margin-bottom: var(--space-md);
@@ -241,14 +299,16 @@ a:hover {
 
 .article-body.two-column {
   column-count: 2;
+  column-rule: 1px solid var(--border-light);
 }
 
 /* ─── Newspaper Date Format ─── */
 .date-ornate {
   font-family: var(--font-meta);
   font-size: 0.9rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--ink-medium);
+  text-transform: uppercase;
 }
 
 /* ─── Lists ─── */
@@ -259,7 +319,7 @@ a:hover {
 
 .headline-list li {
   padding: var(--space-sm) 0;
-  border-bottom: 1px dotted var(--border-light);
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -273,6 +333,7 @@ a:hover {
 .headline-list a {
   border-bottom: none;
   flex: 1;
+  font-family: var(--font-headline);
 }
 
 .headline-list a:hover {
@@ -284,65 +345,103 @@ a:hover {
   font-size: 0.8rem;
   color: var(--ink-faded);
   white-space: nowrap;
+  letter-spacing: 0.05em;
 }
 
-/* ─── Notices & Sidebar ─── */
+/* ─── Victorian Notice Boxes ─── */
 .notice-box {
   border: 2px solid var(--border-dark);
   padding: var(--space-md);
   margin: var(--space-lg) 0;
   background: var(--paper-light);
+  position: relative;
+}
+
+/* Decorative corners for notice boxes */
+.notice-box::before,
+.notice-box::after {
+  content: '✦';
+  position: absolute;
+  font-size: 0.6rem;
+  color: var(--border-dark);
+}
+
+.notice-box::before {
+  top: 4px;
+  left: 4px;
+}
+
+.notice-box::after {
+  bottom: 4px;
+  right: 4px;
 }
 
 .notice-box-title {
   font-family: var(--font-headline);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-align: center;
   margin-bottom: var(--space-sm);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--border-medium);
 }
 
-/* ─── Section Headers ─── */
+/* ─── Section Headers: Victorian Style ─── */
 .section-header {
   font-family: var(--font-headline);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   text-align: center;
   margin: var(--space-xl) 0 var(--space-md);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
 }
 
 .section-header::before,
 .section-header::after {
-  content: '◆';
-  font-size: 0.5rem;
-  vertical-align: middle;
-  margin: 0 var(--space-sm);
-  color: var(--border-dark);
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-dark);
+  max-width: 80px;
 }
 
 /* ─── Blockquotes ─── */
 blockquote {
   font-style: italic;
+  font-family: var(--font-body);
   border-left: 3px solid var(--border-dark);
   padding-left: var(--space-lg);
-  margin: var(--space-lg) 0;
+  margin: var(--space-lg) var(--space-md);
   color: var(--ink-medium);
+  position: relative;
+}
+
+blockquote::before {
+  content: '"';
+  font-family: var(--font-decorative);
+  font-size: 3rem;
+  position: absolute;
+  left: var(--space-sm);
+  top: -var(--space-sm);
+  color: var(--border-light);
+  line-height: 1;
 }
 
 /* ─── Code (for tech writing) ─── */
 code {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  font-size: 0.9em;
+  font-size: 0.85em;
   background: var(--paper-dark);
-  padding: 0.1em 0.3em;
-  border-radius: 2px;
+  padding: 0.15em 0.4em;
+  border: 1px solid var(--border-light);
 }
 
 pre {
@@ -351,28 +450,34 @@ pre {
   padding: var(--space-md);
   overflow-x: auto;
   margin: var(--space-lg) 0;
-  border: 1px solid var(--border-dark);
+  border: 2px solid var(--border-dark);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 pre code {
   background: none;
   padding: 0;
+  border: none;
 }
 
 /* ─── Images ─── */
 .article-image {
   max-width: 100%;
   height: auto;
-  border: 1px solid var(--border-medium);
+  border: 2px solid var(--border-dark);
   margin: var(--space-lg) 0;
+  /* Sepia filter for period feel */
+  filter: sepia(20%) contrast(1.05);
 }
 
 .article-image-caption {
   font-family: var(--font-meta);
   font-size: 0.8rem;
+  font-style: italic;
   text-align: center;
   color: var(--ink-faded);
   margin-top: var(--space-xs);
+  letter-spacing: 0.03em;
 }
 
 /* ─── Footer ─── */
@@ -398,45 +503,86 @@ pre code {
   border-bottom: none;
 }
 
+/* ─── Victorian Embellishments ─── */
+.flourish {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--border-decorative);
+  margin: var(--space-lg) 0;
+  opacity: 0.7;
+}
+
+.dingbat {
+  font-family: serif;
+  display: inline-block;
+}
+
+/* End mark */
+.end-mark {
+  text-align: center;
+  margin-top: var(--space-xl);
+  font-size: 1rem;
+  color: var(--border-dark);
+}
+
+.end-mark::before {
+  content: '— ✦ —';
+  letter-spacing: 0.3em;
+}
+
 /* ─── Animations ─── */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .fade-in {
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.8s ease-out;
 }
 
 /* ─── Responsive Design ─── */
 @media (max-width: 900px) {
   .page-wrapper {
     max-width: calc(100% - 2rem);
-    margin: 1rem;
-    padding: var(--space-lg) var(--space-lg);
+    margin: 1rem auto;
+    padding: var(--space-xl) var(--space-lg);
+    outline-offset: 2px;
   }
 }
 
 @media (max-width: 600px) {
   html {
-    font-size: 15px;
+    font-size: 16px;
   }
   
   .page-wrapper {
     max-width: 100%;
     margin: 0;
-    padding: var(--space-md) var(--space-sm);
-    border-width: 2px;
-    box-shadow: none;
+    padding: var(--space-lg) var(--space-md);
+    border-width: 1px;
+    outline-width: 2px;
+    outline-offset: 2px;
+    box-shadow: 
+      inset 0 0 30px rgba(180, 140, 80, 0.1),
+      0 4px 12px rgba(0, 0, 0, 0.15);
   }
   
   .page-wrapper::before,
   .page-wrapper::after {
-    display: none;
+    font-size: 1.2rem;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .page-wrapper::after {
+    bottom: 10px;
+    right: 10px;
   }
   
   .article-body.two-column {
@@ -444,15 +590,19 @@ pre code {
   }
   
   h1 {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
   }
   
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
   }
   
   .drop-cap {
-    font-size: 2.5rem;
+    font-size: 3rem;
+  }
+  
+  p {
+    text-indent: 1em;
   }
 }
 
@@ -470,6 +620,11 @@ pre code {
     flex-direction: column;
     gap: var(--space-sm);
   }
+  
+  .section-header::before,
+  .section-header::after {
+    max-width: 40px;
+  }
 }
 
 /* ─── Print Styles ─── */
@@ -480,6 +635,10 @@ pre code {
   
   .page-wrapper {
     max-width: 100%;
+    margin: 0;
     padding: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
   }
 }

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  type?: 'rule' | 'double' | 'ornate' | 'dots' | 'flourish';
+  type?: 'rule' | 'double' | 'ornate' | 'dots' | 'flourish' | 'victorian' | 'end';
 }
 
 const { type = 'rule' } = Astro.props;
@@ -12,9 +12,15 @@ const { type = 'rule' } = Astro.props;
 
 {type === 'ornate' && (
   <div class="ornament ornament-ornate">
+    <span class="ornate-wing">☙</span>
     <span class="ornate-line"></span>
-    <span class="ornate-symbol">◆</span>
+    <span class="ornate-center">
+      <span class="ornate-dot">✦</span>
+      <span class="ornate-diamond">❖</span>
+      <span class="ornate-dot">✦</span>
+    </span>
     <span class="ornate-line"></span>
+    <span class="ornate-wing">❧</span>
   </div>
 )}
 
@@ -28,7 +34,21 @@ const { type = 'rule' } = Astro.props;
 
 {type === 'flourish' && (
   <div class="ornament ornament-flourish">
-    ❧
+    ❦
+  </div>
+)}
+
+{type === 'victorian' && (
+  <div class="ornament ornament-victorian">
+    <span class="vic-line"></span>
+    <span class="vic-ornament">✧ ❧ ✧</span>
+    <span class="vic-line"></span>
+  </div>
+)}
+
+{type === 'end' && (
+  <div class="ornament ornament-end">
+    <span>— ✦ —</span>
   </div>
 )}
 
@@ -45,16 +65,16 @@ const { type = 'rule' } = Astro.props;
   
   .ornament-double {
     border: none;
-    height: 4px;
+    height: 6px;
     background: 
       linear-gradient(
         to bottom,
         var(--border-dark) 0px,
-        var(--border-dark) 1px,
-        transparent 1px,
-        transparent 3px,
-        var(--border-dark) 3px,
-        var(--border-dark) 4px
+        var(--border-dark) 2px,
+        transparent 2px,
+        transparent 4px,
+        var(--border-dark) 4px,
+        var(--border-dark) 6px
       );
   }
   
@@ -62,19 +82,38 @@ const { type = 'rule' } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-md);
+    gap: 0;
     margin: var(--space-xl) 0;
   }
   
   .ornate-line {
     flex: 1;
-    max-width: 100px;
+    max-width: 80px;
     height: 1px;
-    background: var(--border-dark);
+    background: var(--border-medium);
   }
   
-  .ornate-symbol {
-    font-size: 0.6rem;
+  .ornate-wing {
+    font-size: 1.2rem;
+    color: var(--border-dark);
+    opacity: 0.7;
+    padding: 0 var(--space-xs);
+  }
+  
+  .ornate-center {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0 var(--space-sm);
+  }
+  
+  .ornate-dot {
+    font-size: 0.5rem;
+    color: var(--border-dark);
+  }
+  
+  .ornate-diamond {
+    font-size: 0.9rem;
     color: var(--border-dark);
   }
   
@@ -88,7 +127,68 @@ const { type = 'rule' } = Astro.props;
   
   .ornament-flourish {
     text-align: center;
-    font-size: 1.5rem;
-    color: var(--ink-medium);
+    font-size: 1.8rem;
+    color: var(--border-dark);
+    opacity: 0.7;
+  }
+  
+  .ornament-victorian {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin: var(--space-xl) 0;
+  }
+  
+  .vic-line {
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--border-dark) 30%,
+      var(--border-dark) 70%,
+      transparent
+    );
+  }
+  
+  .vic-ornament {
+    font-size: 1rem;
+    color: var(--border-dark);
+    letter-spacing: 0.3em;
+    opacity: 0.8;
+  }
+  
+  .ornament-end {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--border-dark);
+    letter-spacing: 0.3em;
+    margin: var(--space-xl) 0;
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 600px) {
+    .ornate-line {
+      max-width: 40px;
+    }
+    
+    .ornate-wing {
+      font-size: 0.9rem;
+    }
+    
+    .ornate-diamond {
+      font-size: 0.7rem;
+    }
+    
+    .vic-line {
+      max-width: 50px;
+    }
+    
+    .vic-ornament {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+    }
   }
 </style>
