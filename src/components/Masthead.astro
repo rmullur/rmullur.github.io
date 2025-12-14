@@ -8,13 +8,16 @@ const { showDate = true, compact = false } = Astro.props;
 
 // Format date in Victorian newspaper style
 const today = new Date();
+const day = today.getDate();
+const suffix = (day === 1 || day === 21 || day === 31) ? 'st' 
+             : (day === 2 || day === 22) ? 'nd'
+             : (day === 3 || day === 23) ? 'rd' : 'th';
 const options: Intl.DateTimeFormatOptions = { 
-  weekday: 'long', 
-  year: 'numeric', 
   month: 'long', 
-  day: 'numeric' 
+  year: 'numeric' 
 };
-const formattedDate = today.toLocaleDateString('en-US', options);
+const monthYear = today.toLocaleDateString('en-US', options);
+const formattedDate = `${day}${suffix} of ${monthYear}`;
 
 // Calculate "issue number" (days since site launch - arbitrary start date)
 const launchDate = new Date('2025-01-01');
@@ -22,13 +25,27 @@ const issueNumber = Math.floor((today.getTime() - launchDate.getTime()) / (1000 
 ---
 
 <header class:list={["masthead", { compact }]}>
-  <div class="masthead-border-top"></div>
+  <!-- Top decorative border -->
+  <div class="masthead-border-top">
+    <span class="border-ornament">✦</span>
+  </div>
   
   <div class="masthead-content">
     <a href="/" class="masthead-title-link">
       <h1 class="masthead-title">Rishi Mullur</h1>
     </a>
-    <p class="masthead-subtitle">Writings & Dispatches</p>
+    
+    <div class="masthead-flourish">
+      <span class="flourish-line"></span>
+      <span class="flourish-diamond">◆</span>
+      <span class="flourish-line"></span>
+    </div>
+    
+    <p class="masthead-subtitle">Notes & Observations</p>
+    
+    {!compact && (
+      <p class="masthead-tagline">~ Wherein the author shares his thoughts on sundry matters ~</p>
+    )}
   </div>
   
   {showDate && (
@@ -39,7 +56,10 @@ const issueNumber = Math.floor((today.getTime() - launchDate.getTime()) / (1000 
     </div>
   )}
   
-  <div class="masthead-border-bottom"></div>
+  <!-- Bottom decorative border -->
+  <div class="masthead-border-bottom">
+    <span class="border-ornament">✦</span>
+  </div>
 </header>
 
 <style>
@@ -52,25 +72,48 @@ const issueNumber = Math.floor((today.getTime() - launchDate.getTime()) / (1000 
     margin-bottom: var(--space-lg);
   }
   
+  /* Decorative borders */
   .masthead-border-top,
   .masthead-border-bottom {
-    height: 4px;
-    background: 
-      linear-gradient(
-        to bottom,
-        var(--border-dark) 0px,
-        var(--border-dark) 1px,
-        transparent 1px,
-        transparent 3px,
-        var(--border-dark) 3px,
-        var(--border-dark) 4px
-      );
+    position: relative;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .masthead-border-top::before,
+  .masthead-border-top::after,
+  .masthead-border-bottom::before,
+  .masthead-border-bottom::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-dark);
+  }
+  
+  .masthead-border-top::before { top: 0; }
+  .masthead-border-top::after { top: 4px; }
+  .masthead-border-bottom::before { bottom: 0; }
+  .masthead-border-bottom::after { bottom: 4px; }
+  
+  .border-ornament {
+    position: relative;
+    z-index: 1;
+    background: var(--paper-bg);
+    padding: 0 var(--space-sm);
+    font-size: 0.6rem;
+    color: var(--border-dark);
+  }
+  
+  .masthead-border-top {
     margin-bottom: var(--space-md);
   }
   
   .masthead-border-bottom {
     margin-top: var(--space-md);
-    margin-bottom: 0;
   }
   
   .masthead-content {
@@ -107,38 +150,70 @@ const issueNumber = Math.floor((today.getTime() - launchDate.getTime()) / (1000 
     font-size: 2.5rem;
   }
   
+  /* Flourish between title and subtitle */
+  .masthead-flourish {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: var(--space-sm) 0;
+  }
+  
+  .flourish-line {
+    width: 60px;
+    height: 1px;
+    background: var(--border-medium);
+  }
+  
+  .flourish-diamond {
+    font-size: 0.4rem;
+    color: var(--border-dark);
+  }
+  
   .masthead-subtitle {
     font-family: var(--font-meta);
     font-size: 1rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--ink-medium);
-    margin: var(--space-xs) 0 0;
+    color: var(--ink-dark);
+    margin: 0;
   }
   
   .compact .masthead-subtitle {
     font-size: 0.85rem;
   }
   
+  .masthead-tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-faded);
+    margin: var(--space-sm) 0 0;
+    letter-spacing: 0.02em;
+  }
+  
   .masthead-meta {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-lg);
     margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+    border: 1px solid var(--border-medium);
+    background: var(--paper-light);
     font-family: var(--font-meta);
-    font-size: 0.85rem;
-    color: var(--ink-faded);
+    font-size: 0.8rem;
+    color: var(--ink-medium);
   }
   
   .masthead-separator {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     color: var(--border-dark);
   }
   
   .masthead-date,
   .masthead-issue {
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   
   @media (max-width: 600px) {
@@ -155,9 +230,19 @@ const issueNumber = Math.floor((today.getTime() - launchDate.getTime()) / (1000 
       letter-spacing: 0.15em;
     }
     
+    .masthead-tagline {
+      font-size: 0.75rem;
+      padding: 0 var(--space-md);
+    }
+    
+    .flourish-line {
+      width: 40px;
+    }
+    
     .masthead-meta {
       flex-direction: column;
       gap: var(--space-xs);
+      padding: var(--space-sm);
     }
     
     .masthead-separator {

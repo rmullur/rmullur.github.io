@@ -16,7 +16,7 @@ const recentPosts = posts.slice(1, 6); // Next 5 posts
 const hasPosts = posts.length > 0;
 ---
 
-<BaseLayout title="Rishi Mullur — Writings & Dispatches">
+<BaseLayout title="Rishi Mullur — Notes & Observations">
   <main class="home fade-in">
     <Masthead />
     
@@ -92,17 +92,17 @@ const hasPosts = posts.length > 0;
     <section class="notices-section">
       <SectionHeader title="Correspondence & Notices" />
       <div class="notices-grid">
-        <a href="https://linkedin.com/in/rishimullur" class="notice-link" target="_blank" rel="noopener">
-          LinkedIn
+        <a href="https://linkedin.com/in/rishimullur" class="notice-box" target="_blank" rel="noopener">
+          <span class="notice-label">LinkedIn</span>
         </a>
-        <a href="https://twitter.com/rishimullur" class="notice-link" target="_blank" rel="noopener">
-          Twitter
+        <a href="https://twitter.com/rishimullur" class="notice-box" target="_blank" rel="noopener">
+          <span class="notice-label">Twitter</span>
         </a>
-        <a href="https://haecceity.substack.com/" class="notice-link" target="_blank" rel="noopener">
-          Substack
+        <a href="https://haecceity.substack.com/" class="notice-box" target="_blank" rel="noopener">
+          <span class="notice-label">Substack</span>
         </a>
-        <a href="mailto:rishi.rmullur@gmail.com" class="notice-link">
-          rishi.rmullur@gmail.com
+        <a href="mailto:rishi.rmullur@gmail.com" class="notice-box">
+          <span class="notice-label">Email</span>
         </a>
       </div>
     </section>
@@ -224,29 +224,58 @@ const hasPosts = posts.length > 0;
     letter-spacing: 0.1em;
   }
 
-  /* Notices Section */
+  /* Notices Section - Victorian Ad Boxes */
   .notices-section {
     margin-bottom: var(--space-xl);
   }
 
   .notices-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--space-md) var(--space-xl);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
   }
 
-  .notice-link {
-    font-family: var(--font-meta);
+  .notice-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-md) var(--space-lg);
+    border: 2px solid var(--border-dark);
+    background: var(--paper-light);
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  /* Decorative inner border */
+  .notice-box::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid var(--border-medium);
+    pointer-events: none;
+  }
+
+  .notice-box:hover {
+    background: var(--paper-bg);
+    border-color: var(--accent-red);
+  }
+
+  .notice-box:hover .notice-label {
+    color: var(--accent-red);
+  }
+
+  .notice-label {
+    font-family: var(--font-headline);
     font-size: 0.9rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    border-bottom: 1px solid var(--border-medium);
-    padding-bottom: 2px;
-  }
-
-  .notice-link:hover {
-    border-bottom-color: var(--accent-red);
+    color: var(--ink-black);
+    transition: color 0.2s ease;
   }
 
   /* Footer */
@@ -291,9 +320,13 @@ const hasPosts = posts.length > 0;
     }
 
     .notices-grid {
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-sm);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .notices-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
