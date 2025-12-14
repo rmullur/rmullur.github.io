@@ -1,225 +1,299 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/Masthead.astro';
+import Ornament from '../components/Ornament.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all non-draft posts, sorted by date
+const posts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get the latest post as featured
+const featuredPost = posts[0];
+const recentPosts = posts.slice(1, 6); // Next 5 posts
+const hasPosts = posts.length > 0;
 ---
 
-<BaseLayout title="Rishi Mullur">
-  <main class="home">
-    <header class="profile">
-      <div class="avatar-container">
-        <img 
-          src="/Rishi_Mullur.jpg" 
-          alt="Rishi Mullur" 
-          class="avatar"
-          loading="eager"
-        />
-        <div class="avatar-glow"></div>
+<BaseLayout title="Rishi Mullur — Writings & Dispatches">
+  <main class="home fade-in">
+    <Masthead />
+    
+    <!-- About the Author Section -->
+    <section class="about-section">
+      <div class="about-content">
+        <!-- Portrait -->
+        <div class="portrait-container">
+          <img 
+            src="/Rishi_Mullur.jpg" 
+            alt="Rishi Mullur" 
+            class="author-portrait"
+          />
+        </div>
+
+        <div class="about-text">
+          <h2 class="about-headline">About the Author</h2>
+          <Ornament type="rule" />
+          <p class="about-bio">
+            <span class="drop-cap">I</span> build things — mostly software, sometimes systems. I've been a programmer, 
+            a PM, and a founder, depending on what needed to get built. Usually found 
+            working through one of the many unread books on my shelf.
+          </p>
+        </div>
       </div>
-      
-      <h1 class="name">Rishi Mullur</h1>
-      
-      <p class="bio">
-        I build things — mostly software, sometimes systems. I've been a programmer, 
-        a PM, and a founder, depending on what needed to get built. Usually found 
-        working through one of the many unread books on my shelf. Occasionally, 
-        I write — some of it is <a href="https://haecceity.substack.com/">here</a>.
-      </p>
-    </header>
+    </section>
 
-    <nav class="links">
-      <a href="https://linkedin.com/in/rishimullur" class="link-item" target="_blank" rel="noopener">
-        <span class="link-icon">💼</span>
-        <span class="link-text">LinkedIn</span>
-      </a>
-      <a href="https://twitter.com/rishimullur" class="link-item" target="_blank" rel="noopener">
-        <span class="link-icon">𝕏</span>
-        <span class="link-text">Twitter</span>
-      </a>
-      <a href="https://haecceity.substack.com/" class="link-item" target="_blank" rel="noopener">
-        <span class="link-icon">✍️</span>
-        <span class="link-text">Substack</span>
-      </a>
-    </nav>
+    <Ornament type="ornate" />
 
-    <footer class="footer">
-      <a href="mailto:rishirm@uw.edu" class="email">rishirm@uw.edu</a>
+    <!-- Dispatches Section - Only show if there are posts -->
+    {hasPosts ? (
+      <>
+        {featuredPost && (
+          <section class="featured-section">
+            <SectionHeader title="Latest Dispatch" />
+            <ArticleCard 
+              title={featuredPost.data.title}
+              description={featuredPost.data.description}
+              date={featuredPost.data.pubDate}
+              slug={featuredPost.slug}
+              featured={true}
+            />
+          </section>
+        )}
+
+        {recentPosts.length > 0 && (
+          <section class="recent-section">
+            <SectionHeader title="Recent Dispatches" />
+            <div class="article-list">
+              {recentPosts.map((post) => (
+                <ArticleCard 
+                  title={post.data.title}
+                  date={post.data.pubDate}
+                  slug={post.slug}
+                />
+              ))}
+            </div>
+            <div class="view-all">
+              <a href="/writing">View All Writings →</a>
+            </div>
+          </section>
+        )}
+
+        <Ornament type="ornate" />
+      </>
+    ) : (
+      <section class="coming-soon">
+        <p class="coming-soon-text">Dispatches forthcoming.</p>
+      </section>
+    )}
+
+    <!-- Correspondence & Notices -->
+    <section class="notices-section">
+      <SectionHeader title="Correspondence & Notices" />
+      <div class="notices-grid">
+        <a href="https://linkedin.com/in/rishimullur" class="notice-link" target="_blank" rel="noopener">
+          LinkedIn
+        </a>
+        <a href="https://twitter.com/rishimullur" class="notice-link" target="_blank" rel="noopener">
+          Twitter
+        </a>
+        <a href="https://haecceity.substack.com/" class="notice-link" target="_blank" rel="noopener">
+          Substack
+        </a>
+        <a href="mailto:rishi.rmullur@gmail.com" class="notice-link">
+          rishi.rmullur@gmail.com
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <Ornament type="double" />
+      <p class="footer-text">Est. 2025 · San Francisco Bay Area</p>
     </footer>
   </main>
 </BaseLayout>
 
 <style>
   .home {
+    max-width: 100%;
+  }
+
+  /* About Section */
+  .about-section {
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-content {
     display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 8rem);
+    gap: var(--space-xl);
+    align-items: flex-start;
   }
 
-  .profile {
-    text-align: center;
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.8s ease-out;
-  }
-
-  .avatar-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
-  }
-
-  .avatar {
+  /* Portrait */
+  .portrait-container {
+    flex-shrink: 0;
     width: 140px;
     height: 140px;
     border-radius: 50%;
+    padding: 4px;
+    background: var(--paper-light);
+    border: 2px solid var(--border-dark);
+  }
+
+  .author-portrait {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border: 2px solid var(--color-border);
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
-
-  .avatar:hover {
-    transform: scale(1.02);
-    border-color: var(--color-accent);
-  }
-
-  .avatar-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 160px;
-    height: 160px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
-    z-index: 0;
-    animation: pulse 4s ease-in-out infinite;
+    filter: sepia(15%) contrast(1.05);
+    display: block;
   }
 
-  .name {
-    font-size: 2.5rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    margin-bottom: 1.5rem;
-    color: var(--color-text);
+  .about-text {
+    flex: 1;
   }
 
-  .bio {
-    font-size: 1.1rem;
-    color: var(--color-text-muted);
-    max-width: 520px;
-    margin: 0 auto;
-    font-weight: 400;
+  .about-headline {
+    font-family: var(--font-headline);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-xs);
+  }
+
+  .about-text :global(.ornament) {
+    margin: var(--space-sm) 0;
+  }
+
+  .about-bio {
+    font-size: 1rem;
     line-height: 1.8;
+    color: var(--ink-dark);
+    text-align: justify;
+    margin: 0;
   }
 
-  .bio a {
-    border-bottom: 1px solid var(--color-accent);
+  .about-bio .drop-cap {
+    font-size: 3rem;
+    line-height: 0.8;
+    padding-right: var(--space-xs);
+    color: var(--accent-red);
   }
 
-  .bio a:hover {
-    border-bottom-color: var(--color-accent-hover);
+  /* Coming Soon Section */
+  .coming-soon {
+    text-align: center;
+    padding: var(--space-xl) 0;
   }
 
-  .links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: auto;
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-  }
-
-  .link-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 1.25rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    transition: all 0.25s ease;
-    color: var(--color-text);
-  }
-
-  .link-item:hover {
-    border-color: var(--color-accent);
-    background: rgba(201, 162, 39, 0.05);
-    transform: translateY(-2px);
-  }
-
-  .link-icon {
+  .coming-soon-text {
+    font-style: italic;
+    color: var(--ink-faded);
     font-size: 1.1rem;
-    width: 1.5rem;
     text-align: center;
   }
 
-  .link-text {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.02em;
+  /* Featured Section */
+  .featured-section {
+    margin-bottom: var(--space-xl);
   }
 
-  .footer {
+  /* Recent Section */
+  .recent-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .article-list {
+    border-top: 1px solid var(--border-medium);
+    border-bottom: 1px solid var(--border-medium);
+    padding: var(--space-sm) 0;
+  }
+
+  .view-all {
     text-align: center;
-    animation: fadeInUp 0.8s ease-out 0.4s both;
+    margin-top: var(--space-md);
   }
 
-  .email {
-    font-family: var(--font-mono);
+  .view-all a {
+    font-family: var(--font-meta);
     font-size: 0.85rem;
-    color: var(--color-text-muted);
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
-  .email:hover {
-    color: var(--color-accent);
-    border-bottom-color: var(--color-accent);
+  /* Notices Section */
+  .notices-section {
+    margin-bottom: var(--space-xl);
   }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .notices-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-xl);
   }
 
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 0.5;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(1.05);
-    }
+  .notice-link {
+    font-family: var(--font-meta);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border-medium);
+    padding-bottom: 2px;
   }
 
-  @media (max-width: 500px) {
-    .links {
-      grid-template-columns: 1fr;
+  .notice-link:hover {
+    border-bottom-color: var(--accent-red);
+  }
+
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    padding-top: var(--space-md);
+  }
+
+  .site-footer :global(.ornament) {
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-text {
+    font-family: var(--font-meta);
+    font-size: 0.8rem;
+    color: var(--ink-faded);
+    letter-spacing: 0.1em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .about-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    .name {
-      font-size: 2rem;
+    .portrait-container {
+      margin-bottom: var(--space-md);
     }
 
-    .bio {
-      font-size: 1rem;
+    .about-bio {
+      text-align: center;
     }
 
-    .avatar {
-      width: 120px;
-      height: 120px;
+    .about-bio .drop-cap {
+      float: none;
+      display: block;
+      font-size: 2.5rem;
+      padding: 0;
+      margin-bottom: var(--space-xs);
     }
 
-    .avatar-glow {
-      width: 140px;
-      height: 140px;
+    .notices-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
     }
   }
 </style>
-

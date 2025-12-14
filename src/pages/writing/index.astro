@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Masthead from '../../components/Masthead.astro';
+import Ornament from '../../components/Ornament.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all non-draft posts, sorted by date
+const posts = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Group posts by year
+const postsByYear = posts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof posts>);
+
+const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
+---
+
+<BaseLayout title="All Writings — Rishi Mullur">
+  <main class="archive fade-in">
+    <Masthead compact={true} showDate={false} />
+    
+    <nav class="back-nav">
+      <a href="/">← Back to Front Page</a>
+    </nav>
+
+    <header class="archive-header">
+      <h1 class="archive-title">The Complete Archive</h1>
+      <p class="archive-subtitle">All dispatches, essays, and reflections</p>
+      <Ornament type="double" />
+    </header>
+
+    <section class="archive-content">
+      {years.map((year) => (
+        <div class="year-section">
+          <h2 class="year-heading">{year}</h2>
+          <div class="year-posts">
+            {postsByYear[year].map((post) => (
+              <ArticleCard 
+                title={post.data.title}
+                date={post.data.pubDate}
+                slug={post.slug}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    {posts.length === 0 && (
+      <div class="no-posts">
+        <p>No dispatches have been published yet.</p>
+        <p class="no-posts-sub">Check back soon.</p>
+      </div>
+    )}
+
+    <footer class="archive-footer">
+      <Ornament type="ornate" />
+      <p class="footer-count">{posts.length} {posts.length === 1 ? 'dispatch' : 'dispatches'} in the archive</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .archive {
+    max-width: 100%;
+  }
+
+  .back-nav {
+    margin-bottom: var(--space-xl);
+  }
+
+  .back-nav a {
+    font-family: var(--font-meta);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: none;
+    color: var(--ink-faded);
+  }
+
+  .back-nav a:hover {
+    color: var(--accent-red);
+  }
+
+  .archive-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .archive-title {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+
+  .archive-subtitle {
+    font-style: italic;
+    color: var(--ink-medium);
+    margin-bottom: var(--space-lg);
+  }
+
+  .archive-content {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .year-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .year-heading {
+    font-family: var(--font-headline);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink-faded);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--border-dark);
+  }
+
+  .year-posts {
+    padding-left: var(--space-md);
+  }
+
+  .no-posts {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+    color: var(--ink-medium);
+  }
+
+  .no-posts-sub {
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+
+  .archive-footer {
+    text-align: center;
+  }
+
+  .footer-count {
+    font-family: var(--font-meta);
+    font-size: 0.85rem;
+    color: var(--ink-faded);
+    letter-spacing: 0.05em;
+  }
+</style>

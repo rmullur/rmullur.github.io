@@ -1,0 +1,94 @@
+---
+interface Props {
+  type?: 'rule' | 'double' | 'ornate' | 'dots' | 'flourish';
+}
+
+const { type = 'rule' } = Astro.props;
+---
+
+{type === 'rule' && <hr class="ornament ornament-rule" />}
+
+{type === 'double' && <hr class="ornament ornament-double" />}
+
+{type === 'ornate' && (
+  <div class="ornament ornament-ornate">
+    <span class="ornate-line"></span>
+    <span class="ornate-symbol">◆</span>
+    <span class="ornate-line"></span>
+  </div>
+)}
+
+{type === 'dots' && (
+  <div class="ornament ornament-dots">
+    <span>·</span>
+    <span>·</span>
+    <span>·</span>
+  </div>
+)}
+
+{type === 'flourish' && (
+  <div class="ornament ornament-flourish">
+    ❧
+  </div>
+)}
+
+<style>
+  .ornament {
+    margin: var(--space-lg) 0;
+  }
+  
+  .ornament-rule {
+    border: none;
+    height: 1px;
+    background: var(--border-dark);
+  }
+  
+  .ornament-double {
+    border: none;
+    height: 4px;
+    background: 
+      linear-gradient(
+        to bottom,
+        var(--border-dark) 0px,
+        var(--border-dark) 1px,
+        transparent 1px,
+        transparent 3px,
+        var(--border-dark) 3px,
+        var(--border-dark) 4px
+      );
+  }
+  
+  .ornament-ornate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin: var(--space-xl) 0;
+  }
+  
+  .ornate-line {
+    flex: 1;
+    max-width: 100px;
+    height: 1px;
+    background: var(--border-dark);
+  }
+  
+  .ornate-symbol {
+    font-size: 0.6rem;
+    color: var(--border-dark);
+  }
+  
+  .ornament-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-size: 1.5rem;
+    color: var(--ink-faded);
+  }
+  
+  .ornament-flourish {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--ink-medium);
+  }
+</style>

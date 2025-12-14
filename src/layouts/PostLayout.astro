@@ -1,0 +1,271 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Masthead from '../components/Masthead.astro';
+import Ornament from '../components/Ornament.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+}
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+
+// Format date in Victorian newspaper style
+const formatDate = (date: Date) => {
+  const day = date.getDate();
+  const suffix = (day === 1 || day === 21 || day === 31) ? 'st' 
+               : (day === 2 || day === 22) ? 'nd'
+               : (day === 3 || day === 23) ? 'rd' : 'th';
+  const options: Intl.DateTimeFormatOptions = { month: 'long', year: 'numeric' };
+  const monthYear = date.toLocaleDateString('en-US', options);
+  return `The ${day}${suffix} of ${monthYear}`;
+};
+---
+
+<BaseLayout title={`${title} — Rishi Mullur`} description={description}>
+  <article class="post fade-in">
+    <Masthead compact={true} showDate={false} />
+    
+    <nav class="post-nav">
+      <a href="/">← Front Page</a>
+      <span class="nav-sep">·</span>
+      <a href="/writing">Archive</a>
+    </nav>
+
+    <header class="post-header">
+      <h1 class="post-title">{title}</h1>
+      <p class="post-description">{description}</p>
+      <Ornament type="double" />
+      <div class="post-meta">
+        <time datetime={pubDate.toISOString()}>
+          {formatDate(pubDate)}
+        </time>
+        {updatedDate && (
+          <span class="updated">
+            (Updated: {formatDate(updatedDate)})
+          </span>
+        )}
+      </div>
+    </header>
+
+    <Ornament type="rule" />
+
+    <div class="post-content">
+      <slot />
+    </div>
+
+    <footer class="post-footer">
+      <Ornament type="ornate" />
+      <div class="footer-nav">
+        <a href="/writing">← Back to Archive</a>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    max-width: 100%;
+  }
+
+  .post-nav {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .post-nav a {
+    font-family: var(--font-meta);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: none;
+    color: var(--ink-faded);
+  }
+
+  .post-nav a:hover {
+    color: var(--accent-red);
+  }
+
+  .nav-sep {
+    color: var(--ink-light);
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .post-title {
+    font-family: var(--font-headline);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-description {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-medium);
+    max-width: 500px;
+    margin: 0 auto var(--space-md);
+  }
+
+  .post-meta {
+    font-family: var(--font-meta);
+    font-size: 0.9rem;
+    color: var(--ink-faded);
+    letter-spacing: 0.05em;
+  }
+
+  .updated {
+    font-size: 0.8rem;
+    margin-left: var(--space-sm);
+  }
+
+  /* Post Content Styling */
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .post-content :global(h2) {
+    font-family: var(--font-headline);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    text-align: center;
+  }
+
+  .post-content :global(h3) {
+    font-family: var(--font-headline);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-content :global(p) {
+    margin-bottom: var(--space-md);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .post-content :global(p:first-of-type::first-letter) {
+    float: left;
+    font-family: var(--font-headline);
+    font-size: 4rem;
+    line-height: 0.8;
+    padding-right: var(--space-sm);
+    padding-top: 0.1em;
+    color: var(--accent-red);
+    font-weight: 700;
+  }
+
+  .post-content :global(blockquote) {
+    font-style: italic;
+    border-left: 3px solid var(--border-dark);
+    padding-left: var(--space-lg);
+    margin: var(--space-lg) 0;
+    color: var(--ink-medium);
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: var(--space-md) 0;
+    padding-left: var(--space-xl);
+  }
+
+  .post-content :global(li) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-content :global(a) {
+    border-bottom: 1px solid var(--border-medium);
+  }
+
+  .post-content :global(a:hover) {
+    color: var(--accent-red);
+    border-bottom-color: var(--accent-red);
+  }
+
+  .post-content :global(hr) {
+    border: none;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M0 10 L80 10 M120 10 L200 10' stroke='%233d3222' stroke-width='1' fill='none'/%3E%3Ccircle cx='100' cy='10' r='3' fill='%233d3222'/%3E%3Ccircle cx='90' cy='10' r='1.5' fill='%233d3222'/%3E%3Ccircle cx='110' cy='10' r='1.5' fill='%233d3222'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: var(--space-xl) 0;
+  }
+
+  .post-content :global(strong) {
+    font-weight: 700;
+  }
+
+  .post-content :global(em) {
+    font-style: italic;
+  }
+
+  /* Code blocks */
+  .post-content :global(pre) {
+    background: var(--ink-black);
+    color: var(--paper-bg);
+    padding: var(--space-md);
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+    border: 1px solid var(--border-dark);
+    font-size: 0.9rem;
+  }
+
+  .post-content :global(code) {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  .post-content :global(:not(pre) > code) {
+    background: var(--paper-dark);
+    padding: 0.1em 0.3em;
+    border-radius: 2px;
+  }
+
+  /* Footer */
+  .post-footer {
+    margin-top: var(--space-3xl);
+    text-align: center;
+  }
+
+  .footer-nav {
+    margin-top: var(--space-md);
+  }
+
+  .footer-nav a {
+    font-family: var(--font-meta);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .post-title {
+      font-size: 1.75rem;
+    }
+
+    .post-description {
+      font-size: 1rem;
+    }
+
+    .post-content :global(p:first-of-type::first-letter) {
+      font-size: 3rem;
+    }
+
+    .post-content :global(p) {
+      text-align: left;
+    }
+  }
+</style>

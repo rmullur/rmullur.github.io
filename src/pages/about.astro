@@ -1,166 +1,278 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/Masthead.astro';
+import Ornament from '../components/Ornament.astro';
 ---
 
 <BaseLayout title="About — Rishi Mullur">
-  <main class="about">
-    <a href="/" class="back-link">← Home</a>
+  <main class="about fade-in">
+    <Masthead compact={true} showDate={false} />
     
-    <article class="content">
-      <h1>About</h1>
-      
-      <div class="profile-section">
-        <img 
-          src="/Rishi_Mullur.jpg" 
-          alt="Rishi Mullur" 
-          class="about-avatar"
-        />
-        <div class="profile-text">
+    <nav class="back-nav">
+      <a href="/">← Back to Front Page</a>
+    </nav>
+
+    <article class="profile-piece">
+      <header class="profile-header">
+        <h1 class="profile-headline">A Profile of the Author</h1>
+        <p class="profile-subhead">In which we learn something of the man behind the dispatches</p>
+        <Ornament type="double" />
+      </header>
+
+      <div class="profile-content">
+        <div class="profile-portrait">
+          <img 
+            src="/Rishi_Mullur.jpg" 
+            alt="Rishi Mullur" 
+            class="portrait-image"
+          />
+          <p class="portrait-caption">The Author, photographed recently</p>
+        </div>
+
+        <div class="profile-body">
           <p>
-            I build things — mostly software, sometimes systems. I've been a programmer, 
-            a PM, and a founder, depending on what needed to get built.
+            <span class="drop-cap">R</span>ishi Mullur is a builder of things — mostly software, sometimes 
+            systems, occasionally organizations. He has been, at various times, a programmer, a product 
+            manager, and a founder, depending entirely on what needed to get built at the moment.
+          </p>
+
+          <p>
+            His interests lie at the intersection of technology and craft. He believes that good software, 
+            like good prose, demands clarity of thought and punishes ambiguity. Both reward patient 
+            revision; both fail quietly when done carelessly.
+          </p>
+
+          <h2>On Work</h2>
+          <p>
+            He moves between code and strategy with some regularity. Whether writing the first lines of 
+            a new system or determining what ought to be built next, he finds himself drawn to the 
+            particular satisfaction of making things that work — not merely function, but truly work, 
+            in the way a well-made clock works.
+          </p>
+
+          <h2>On Writing</h2>
+          <p>
+            He writes because thinking in public differs from thinking in private. The act of explaining 
+            forces clarity; the possibility of being read demands precision. His essays and reflections 
+            can be found in these pages and, occasionally, on 
+            <a href="https://haecceity.substack.com/">Haecceity</a>.
+          </p>
+
+          <h2>On Reading</h2>
+          <p>
+            He maintains a shelf of unread books that grows faster than he can diminish it — a situation 
+            he regards as a feature rather than a bug. The presence of unread books, he maintains, 
+            represents possibility.
           </p>
         </div>
       </div>
 
-      <section class="section">
-        <h2>What I Do</h2>
-        <p>
-          I'm a product builder who moves between code and strategy. Whether it's 
-          writing the first lines of a new system or figuring out what should be 
-          built next, I find myself drawn to the craft of making things that work.
-        </p>
-      </section>
+      <Ornament type="ornate" />
 
-      <section class="section">
-        <h2>Writing</h2>
-        <p>
-          Occasionally, I write. You can find my essays and reflections on 
-          <a href="https://haecceity.substack.com/">Haecceity</a>, where I explore 
-          ideas about technology, building, and thinking.
-        </p>
-      </section>
-
-      <section class="section">
-        <h2>Connect</h2>
-        <ul class="connect-list">
-          <li><a href="https://linkedin.com/in/rishimullur">LinkedIn</a></li>
-          <li><a href="https://twitter.com/rishimullur">Twitter</a></li>
-          <li><a href="mailto:rishirm@uw.edu">Email</a></li>
-        </ul>
+      <section class="correspondence">
+        <h2 class="correspondence-header">For Correspondence</h2>
+        <div class="correspondence-links">
+          <a href="https://linkedin.com/in/rishimullur" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="link-sep">·</span>
+          <a href="https://twitter.com/rishimullur" target="_blank" rel="noopener">Twitter</a>
+          <span class="link-sep">·</span>
+          <a href="mailto:rishi.rmullur@gmail.com">rishi.rmullur@gmail.com</a>
+        </div>
       </section>
     </article>
+
+    <footer class="page-footer">
+      <Ornament type="double" />
+      <p class="footer-text">San Francisco Bay Area</p>
+    </footer>
   </main>
 </BaseLayout>
 
 <style>
   .about {
-    animation: fadeIn 0.6s ease-out;
+    max-width: 100%;
   }
 
-  .back-link {
-    display: inline-block;
-    font-family: var(--font-mono);
+  .back-nav {
+    margin-bottom: var(--space-xl);
+  }
+
+  .back-nav a {
+    font-family: var(--font-meta);
     font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-bottom: 3rem;
-    transition: color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: none;
+    color: var(--ink-faded);
   }
 
-  .back-link:hover {
-    color: var(--color-accent);
+  .back-nav a:hover {
+    color: var(--accent-red);
   }
 
-  .content h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    letter-spacing: 0.01em;
+  .profile-piece {
+    margin-bottom: var(--space-2xl);
   }
 
-  .profile-section {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-border);
+  .profile-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
   }
 
-  .about-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+  .profile-headline {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+
+  .profile-subhead {
+    font-style: italic;
+    color: var(--ink-medium);
+    margin-bottom: var(--space-md);
+  }
+
+  .profile-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .profile-portrait {
+    position: sticky;
+    top: var(--space-lg);
+  }
+
+  .portrait-image {
+    width: 100%;
+    aspect-ratio: 1;
     object-fit: cover;
-    border: 2px solid var(--color-border);
-    flex-shrink: 0;
+    border: 3px solid var(--border-dark);
+    filter: sepia(20%) contrast(1.05);
   }
 
-  .profile-text p {
-    color: var(--color-text-muted);
-    font-size: 1.1rem;
-    margin: 0;
+  .portrait-caption {
+    font-family: var(--font-meta);
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--ink-faded);
+    margin-top: var(--space-sm);
+    font-style: italic;
   }
 
-  .section {
-    margin-bottom: 2.5rem;
+  .profile-body {
+    font-size: 1.05rem;
+    line-height: 1.85;
   }
 
-  .section h2 {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: var(--color-accent);
-    margin-bottom: 1rem;
-    letter-spacing: 0.02em;
+  .profile-body p {
+    margin-bottom: var(--space-md);
+    text-align: justify;
   }
 
-  .section p {
-    color: var(--color-text-muted);
-    line-height: 1.8;
+  .profile-body .drop-cap {
+    float: left;
+    font-family: var(--font-headline);
+    font-size: 4rem;
+    line-height: 0.8;
+    padding-right: var(--space-sm);
+    padding-top: 0.1em;
+    color: var(--accent-red);
+    font-weight: 700;
   }
 
-  .connect-list {
-    list-style: none;
+  .profile-body h2 {
+    font-family: var(--font-headline);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .profile-body a {
+    border-bottom: 1px solid var(--border-medium);
+  }
+
+  .profile-body a:hover {
+    color: var(--accent-red);
+    border-bottom-color: var(--accent-red);
+  }
+
+  .correspondence {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+
+  .correspondence-header {
+    font-family: var(--font-headline);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-md);
+  }
+
+  .correspondence-links {
     display: flex;
-    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
   }
 
-  .connect-list a {
-    font-family: var(--font-mono);
+  .correspondence-links a {
+    font-family: var(--font-meta);
     font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border-medium);
     padding-bottom: 2px;
-    border-bottom: 1px solid var(--color-border);
-    transition: all 0.2s ease;
   }
 
-  .connect-list a:hover {
-    border-bottom-color: var(--color-accent);
+  .correspondence-links a:hover {
+    border-bottom-color: var(--accent-red);
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
+  .link-sep {
+    color: var(--ink-light);
+  }
+
+  .page-footer {
+    text-align: center;
+  }
+
+  .footer-text {
+    font-family: var(--font-meta);
+    font-size: 0.8rem;
+    color: var(--ink-faded);
+    letter-spacing: 0.1em;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .profile-content {
+      grid-template-columns: 1fr;
     }
-    to {
-      opacity: 1;
-    }
-  }
 
-  @media (max-width: 500px) {
-    .profile-section {
-      flex-direction: column;
-      align-items: center;
+    .profile-portrait {
+      position: static;
+      max-width: 200px;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .profile-body p {
+      text-align: left;
+    }
+
+    .profile-body .drop-cap {
+      float: none;
+      display: block;
       text-align: center;
-    }
-
-    .content h1 {
-      font-size: 2rem;
-    }
-
-    .connect-list {
-      flex-direction: column;
-      gap: 0.75rem;
+      font-size: 3rem;
+      padding: 0;
+      margin-bottom: var(--space-xs);
     }
   }
 </style>
-
