@@ -217,36 +217,60 @@ const issueNumber = Math.floor((today.getTime() - launchDate.getTime()) / (1000 
   }
   
   @media (max-width: 600px) {
-    .masthead-title {
-      font-size: 2.5rem;
+    .masthead {
+      margin-bottom: var(--space-lg);
     }
     
-    .compact .masthead-title {
+    .masthead-border-top,
+    .masthead-border-bottom {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .masthead-border-bottom {
+      margin-top: var(--space-sm);
+    }
+    
+    .masthead-title {
       font-size: 2rem;
     }
     
-    .masthead-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
+    .compact .masthead-title {
+      font-size: 1.75rem;
     }
     
-    .masthead-tagline {
+    .masthead-subtitle {
       font-size: 0.75rem;
-      padding: 0 var(--space-md);
+      letter-spacing: 0.12em;
+    }
+    
+    .masthead-flourish {
+      margin: var(--space-xs) 0;
     }
     
     .flourish-line {
-      width: 40px;
+      width: 30px;
+    }
+    
+    .masthead-tagline {
+      font-size: 0.7rem;
+      padding: 0 var(--space-sm);
+      line-height: 1.5;
     }
     
     .masthead-meta {
       flex-direction: column;
       gap: var(--space-xs);
-      padding: var(--space-sm);
+      padding: var(--space-xs) var(--space-sm);
+      margin-top: var(--space-sm);
     }
     
     .masthead-separator {
       display: none;
+    }
+    
+    .masthead-date,
+    .masthead-issue {
+      font-size: 0.7rem;
     }
   }
 </style>

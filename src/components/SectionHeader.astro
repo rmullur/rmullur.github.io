@@ -60,17 +60,22 @@ const { title } = Astro.props;
     transform: scaleX(-1);
   }
   
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
+    .section-header {
+      margin: var(--space-lg) 0 var(--space-md);
+    }
+    
     .header-line {
       display: none;
     }
     
-    .section-header {
-      justify-content: center;
+    .header-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
     }
     
-    .header-text {
-      font-size: 0.8rem;
+    .header-ornament {
+      font-size: 0.7rem;
     }
   }
 </style>

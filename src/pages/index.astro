@@ -297,36 +297,79 @@ const hasPosts = posts.length > 0;
 
   /* Responsive */
   @media (max-width: 600px) {
+    .about-section {
+      margin-bottom: var(--space-md);
+    }
+    
     .about-content {
       flex-direction: column;
       align-items: center;
       text-align: center;
+      gap: var(--space-md);
     }
 
     .portrait-container {
-      margin-bottom: var(--space-md);
+      width: 100px;
+      height: 100px;
+      margin-bottom: 0;
+    }
+
+    .about-headline {
+      font-size: 1rem;
     }
 
     .about-bio {
       text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
 
     .about-bio .drop-cap {
       float: none;
       display: block;
-      font-size: 2.5rem;
+      font-size: 2rem;
       padding: 0;
       margin-bottom: var(--space-xs);
     }
 
+    .coming-soon {
+      padding: var(--space-md) 0;
+    }
+
+    .coming-soon-text {
+      font-size: 1rem;
+    }
+
     .notices-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .notice-box {
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .notice-label {
+      font-size: 0.75rem;
+    }
+
+    .site-footer {
+      padding-top: var(--space-sm);
+    }
+
+    .footer-text {
+      font-size: 0.7rem;
     }
   }
 
   @media (max-width: 400px) {
     .notices-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .notice-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
     }
   }
 </style>
