@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — Rishi Mullur">
+  <main class="about">
+    <a href="/" class="back-link">← Home</a>
+    
+    <article class="content">
+      <h1>About</h1>
+      
+      <div class="profile-section">
+        <img 
+          src="/Rishi_Mullur.jpg" 
+          alt="Rishi Mullur" 
+          class="about-avatar"
+        />
+        <div class="profile-text">
+          <p>
+            I build things — mostly software, sometimes systems. I've been a programmer, 
+            a PM, and a founder, depending on what needed to get built.
+          </p>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>What I Do</h2>
+        <p>
+          I'm a product builder who moves between code and strategy. Whether it's 
+          writing the first lines of a new system or figuring out what should be 
+          built next, I find myself drawn to the craft of making things that work.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Writing</h2>
+        <p>
+          Occasionally, I write. You can find my essays and reflections on 
+          <a href="https://haecceity.substack.com/">Haecceity</a>, where I explore 
+          ideas about technology, building, and thinking.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Connect</h2>
+        <ul class="connect-list">
+          <li><a href="https://linkedin.com/in/rishimullur">LinkedIn</a></li>
+          <li><a href="https://twitter.com/rishimullur">Twitter</a></li>
+          <li><a href="mailto:rishirm@uw.edu">Email</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .about {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+
+  .content h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+  }
+
+  .profile-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border);
+    flex-shrink: 0;
+  }
+
+  .profile-text p {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .section p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .connect-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .connect-list a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+  }
+
+  .connect-list a:hover {
+    border-bottom-color: var(--color-accent);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .profile-section {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 2rem;
+    }
+
+    .connect-list {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>
+

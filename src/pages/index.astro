@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Rishi Mullur">
+  <main class="home">
+    <header class="profile">
+      <div class="avatar-container">
+        <img 
+          src="/Rishi_Mullur.jpg" 
+          alt="Rishi Mullur" 
+          class="avatar"
+          loading="eager"
+        />
+        <div class="avatar-glow"></div>
+      </div>
+      
+      <h1 class="name">Rishi Mullur</h1>
+      
+      <p class="bio">
+        I build things — mostly software, sometimes systems. I've been a programmer, 
+        a PM, and a founder, depending on what needed to get built. Usually found 
+        working through one of the many unread books on my shelf. Occasionally, 
+        I write — some of it is <a href="https://haecceity.substack.com/">here</a>.
+      </p>
+    </header>
+
+    <nav class="links">
+      <a href="https://linkedin.com/in/rishimullur" class="link-item" target="_blank" rel="noopener">
+        <span class="link-icon">💼</span>
+        <span class="link-text">LinkedIn</span>
+      </a>
+      <a href="https://twitter.com/rishimullur" class="link-item" target="_blank" rel="noopener">
+        <span class="link-icon">𝕏</span>
+        <span class="link-text">Twitter</span>
+      </a>
+      <a href="https://haecceity.substack.com/" class="link-item" target="_blank" rel="noopener">
+        <span class="link-icon">✍️</span>
+        <span class="link-text">Substack</span>
+      </a>
+    </nav>
+
+    <footer class="footer">
+      <a href="mailto:rishirm@uw.edu" class="email">rishirm@uw.edu</a>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .home {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 8rem);
+  }
+
+  .profile {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .avatar-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .avatar:hover {
+    transform: scale(1.02);
+    border-color: var(--color-accent);
+  }
+
+  .avatar-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+    z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .name {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .bio {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.8;
+  }
+
+  .bio a {
+    border-bottom: 1px solid var(--color-accent);
+  }
+
+  .bio a:hover {
+    border-bottom-color: var(--color-accent-hover);
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: auto;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    color: var(--color-text);
+  }
+
+  .link-item:hover {
+    border-color: var(--color-accent);
+    background: rgba(201, 162, 39, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .link-icon {
+    font-size: 1.1rem;
+    width: 1.5rem;
+    text-align: center;
+  }
+
+  .link-text {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .footer {
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  .email {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .email:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .links {
+      grid-template-columns: 1fr;
+    }
+
+    .name {
+      font-size: 2rem;
+    }
+
+    .bio {
+      font-size: 1rem;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+    }
+
+    .avatar-glow {
+      width: 140px;
+      height: 140px;
+    }
+  }
+</style>
+
