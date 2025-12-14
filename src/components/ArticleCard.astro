@@ -27,25 +27,33 @@ const formatDateLong = (date: Date) => {
                : (day === 3 || day === 23) ? 'rd' : 'th';
   const options: Intl.DateTimeFormatOptions = { month: 'long', year: 'numeric' };
   const monthYear = date.toLocaleDateString('en-US', options);
-  return `${day}${suffix} of ${monthYear}`;
+  return `The ${day}${suffix} of ${monthYear}`;
 };
 ---
 
 {featured ? (
   <article class="article-card featured">
+    <div class="featured-ornament top">❦</div>
     <h2 class="article-title">
       <a href={`/writing/${slug}`}>{title}</a>
     </h2>
+    <div class="title-rule">
+      <span class="rule-dot">✦</span>
+    </div>
     {description && (
       <p class="article-description">{description}</p>
     )}
     <div class="article-meta">
+      <span class="meta-ornament">☙</span>
       <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
+      <span class="meta-ornament">❧</span>
     </div>
+    <div class="featured-ornament bottom">❦</div>
   </article>
 ) : (
   <article class="article-card">
     <a href={`/writing/${slug}`} class="article-link">
+      <span class="bullet">❧</span>
       <span class="article-title">{title}</span>
       <span class="article-dots"></span>
       <time class="article-date" datetime={date.toISOString()}>
@@ -60,20 +68,51 @@ const formatDateLong = (date: Date) => {
     margin-bottom: var(--space-sm);
   }
   
-  /* Featured Article Style */
+  /* Featured Article Style - Victorian Announcement */
   .article-card.featured {
     text-align: center;
-    padding: var(--space-lg) 0;
+    padding: var(--space-xl) var(--space-lg);
     margin-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--border-medium);
+    border: 2px solid var(--border-dark);
+    background: var(--paper-light);
+    position: relative;
+  }
+  
+  /* Decorative inner border */
+  .article-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid var(--border-medium);
+    pointer-events: none;
+  }
+  
+  .featured-ornament {
+    font-size: 1.2rem;
+    color: var(--border-dark);
+    opacity: 0.6;
+    line-height: 1;
+  }
+  
+  .featured-ornament.top {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .featured-ornament.bottom {
+    margin-top: var(--space-sm);
   }
   
   .featured .article-title {
     font-family: var(--font-headline);
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     font-weight: 700;
-    margin-bottom: var(--space-sm);
-    line-height: 1.3;
+    margin-bottom: var(--space-xs);
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
   
   .featured .article-title a {
@@ -85,19 +124,54 @@ const formatDateLong = (date: Date) => {
     color: var(--accent-red);
   }
   
+  .title-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--space-sm) auto;
+    max-width: 200px;
+  }
+  
+  .title-rule::before,
+  .title-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-medium);
+  }
+  
+  .rule-dot {
+    font-size: 0.5rem;
+    color: var(--border-dark);
+    padding: 0 var(--space-sm);
+  }
+  
   .featured .article-description {
+    font-family: var(--font-body);
     font-style: italic;
     color: var(--ink-medium);
-    max-width: 500px;
-    margin: 0 auto var(--space-md);
+    max-width: 480px;
+    margin: var(--space-sm) auto var(--space-md);
     text-align: center;
+    line-height: 1.7;
   }
   
   .featured .article-meta {
     font-family: var(--font-meta);
     font-size: 0.85rem;
     color: var(--ink-faded);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+  
+  .meta-ornament {
+    font-size: 0.8rem;
+    color: var(--border-dark);
+    opacity: 0.6;
   }
   
   /* List Article Style */
@@ -119,8 +193,19 @@ const formatDateLong = (date: Date) => {
     color: var(--accent-red);
   }
   
+  .article-link:hover .bullet {
+    color: var(--accent-red);
+  }
+  
+  .bullet {
+    font-size: 0.8rem;
+    color: var(--border-dark);
+    opacity: 0.6;
+    transition: all 0.2s ease;
+  }
+  
   .article-link .article-title {
-    font-family: var(--font-body);
+    font-family: var(--font-headline);
     font-size: 1rem;
     transition: color 0.2s ease;
   }
@@ -137,15 +222,34 @@ const formatDateLong = (date: Date) => {
     font-size: 0.8rem;
     color: var(--ink-faded);
     white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+  
+  @media (max-width: 600px) {
+    .article-card.featured {
+      padding: var(--space-lg) var(--space-md);
+    }
+    
+    .featured .article-title {
+      font-size: 1.4rem;
+    }
+    
+    .featured .article-description {
+      font-size: 0.95rem;
+    }
+    
+    .featured-ornament {
+      font-size: 1rem;
+    }
   }
   
   @media (max-width: 500px) {
-    .featured .article-title {
-      font-size: 1.5rem;
-    }
-    
     .article-link {
       flex-wrap: wrap;
+    }
+    
+    .bullet {
+      display: none;
     }
     
     .article-dots {
