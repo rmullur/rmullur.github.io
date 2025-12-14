@@ -158,9 +158,11 @@ Victorian boxes should have double borders:
   right: 5px;
   bottom: 5px;
   border: 1px solid var(--border-medium);
-  pointer-events: none;
+  pointer-events: none;  /* IMPORTANT: Always add this! */
 }
 ```
+
+> ⚠️ **CRITICAL**: Always add `pointer-events: none` to ALL decorative `::before` and `::after` pseudo-elements. Without this, they will block clicks/taps on mobile devices!
 
 ### Corner Flourishes
 

@@ -122,6 +122,7 @@ body {
   color: var(--border-decorative);
   opacity: 0.5;
   font-family: serif;
+  pointer-events: none;
 }
 
 .page-wrapper::before {
@@ -364,6 +365,7 @@ a:hover {
   position: absolute;
   font-size: 0.6rem;
   color: var(--border-dark);
+  pointer-events: none;
 }
 
 .notice-box::before {
