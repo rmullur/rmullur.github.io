@@ -11,7 +11,7 @@ Maybe you can pin down the exact day you discovered there's an echoey voice in y
 
 For a while, younger me used to think this was what being **"conscious"** meant.
 
-Some call this the narrative self, an inner monologue. Reportedly there are humans who don't have it, and they are still conscious. They can still reason. (Some researchers even propose a term for the near absence of inner speech: **"anendophasia"**.)
+Some call this the narrative self, an inner monologue. Reportedly there are humans who don't have it, and they are still conscious. They can still reason. (Some researchers even propose a term for the near absence of inner speech: **["anendophasia"](https://journals.sagepub.com/doi/10.1177/09567976241243004)**.)
 
 So, then the voice you hear as you read these words is not what makes you conscious. But "wait a minute!" you might say. "I know what it is to be conscious. Of course I know, I am conscious the same way you are". Well yes, but now we get into murky terrain, because we need to pin down a few things about what it means to be conscious and what it means to be intelligent before we go forward, or else we will get lost in nuances.
 
@@ -19,13 +19,13 @@ What is consciousness? Unfortunately, we don't have a single clear definition fo
 
 We will define here, that when I say "consciousness," about an entity, I mean two things: (1) there's something it feels like from the inside for the entity, and (2) some information is available for the entity to use in deliberate thought and action.
 
-As **Thomas Nagel** wrote:
+As **[Thomas Nagel](https://philosophy.uconn.edu/wp-content/uploads/sites/365/2020/03/Nagel-What-is-it-like-to-be-a-bat.pdf)** wrote:
 
 > "The fact that an organism has conscious experience at all means, basically, that there is something it is like to be that organism."
 
 There is something it feels like to be you. Also, information isn't just processed somewhere in the background; it's usable for thinking, deciding, speaking, and guiding deliberate action right now. This is what we will constrain ourselves to.
 
-How about the question: what is intelligence? Again, there are many formalized definitions, but let's start with this one from **Shane Legg and Marcus Hutter**:
+How about the question: what is intelligence? Again, there are many formalized definitions, but let's start with this one from **[Shane Legg and Marcus Hutter](https://arxiv.org/pdf/0712.3329)**:
 
 > "Intelligence measures an agent's ability to achieve goals in a wide range of environments."
 
@@ -33,7 +33,7 @@ We will augment this definition with the requirement that the agent should be ab
 
 ---
 
-Now, let's get back to that voice in your head. What is "you" as you are awake? For me, I used to think there was a nebulous space inside my head where "I" am, a sort of section where my mind, and thereby the conscious "me," sits. This conjures up an image of a little man sitting inside your head, a homunculus, watching everything, listening to everything, pressing buttons to move the body, described as the **"Cartesian Theater"** by Daniel Dennett.
+Now, let's get back to that voice in your head. What is "you" as you are awake? For me, I used to think there was a nebulous space inside my head where "I" am, a sort of section where my mind, and thereby the conscious "me," sits. This conjures up an image of a little man sitting inside your head, a [homunculus](https://en.wikipedia.org/wiki/Homunculus), watching everything, listening to everything, pressing buttons to move the body, described as the **["Cartesian Theater"](https://en.wikipedia.org/wiki/Cartesian_theater)** by Daniel Dennett.
 
 But a simple, naive question breaks this down: how does the little man see? Well, you'd need another man inside the little man's head. With this, it quickly becomes clear that there is nobody sitting inside our head driving our body, because it's a logical fallacy that recurses. You cannot explain something by saying it's turtles all the way down.
 
@@ -41,7 +41,7 @@ So, another hypothesis we can take is that we are the result of processes: neuro
 
 ---
 
-**John Searle** proposed what is now a famous thought experiment: the **Chinese Room**. Imagine you are in a room with closed doors, no window, and just a slit to receive a piece of paper and a slit on the other side to send a piece of paper. You have no knowledge of the Chinese language. But inside the room you have a massive rulebook that tells you exactly how to respond to strings of Chinese symbols: "If you receive these symbols, copy out those symbols."
+**[John Searle](https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A)** proposed what is now a famous thought experiment: the **[Chinese Room](https://plato.stanford.edu/entries/chinese-room/)**. Imagine you are in a room with closed doors, no window, and just a slit to receive a piece of paper and a slit on the other side to send a piece of paper. You have no knowledge of the Chinese language. But inside the room you have a massive rulebook that tells you exactly how to respond to strings of Chinese symbols: "If you receive these symbols, copy out those symbols."
 
 Outside the room, people ask you questions by slipping in pieces of paper covered in Chinese characters. You follow the manual and send back another set of Chinese characters. To an outsider, it's quite evident that you "know Chinese." Look at you responding fluently. But as you (inside the room) know, you have no clue what you are doing. You are just following a manual.
 
@@ -49,7 +49,7 @@ This experiment argues that you can have ability, competence, and performance wi
 
 ---
 
-Let's explore another strange condition called **blindsight**, in which people with damage to the part of the brain that processes visual information lose conscious vision. But surprisingly, if you test them, they can still guess things about what's there better than random chance: the direction a line is tilted, where a light flashed, whether something moved left or right. For them, it feels like they are guessing, taking a shot in the proverbial dark, yet they seem to be right.
+Let's explore another strange condition called **[blindsight](https://en.wikipedia.org/wiki/Blindsight)**, in which people with damage to the part of the brain that processes visual information lose conscious vision. But surprisingly, if you test them, they can still guess things about what's there better than random chance: the direction a line is tilted, where a light flashed, whether something moved left or right. For them, it feels like they are guessing, taking a shot in the proverbial dark, yet they seem to be right.
 
 This phenomenon showcases yet another point: ability and competence can happen with no awareness of competence at all. Extending this idea, an entity could do something, reason, or think without having any conscious knowledge that it is doing it.
 
@@ -85,7 +85,7 @@ Asking "what am I?" and "am I this voice in my head?" is perhaps a uniquely huma
 
 **Notes:**
 
-- *Blindsight* by Peter Watts is a recommended read that inspired a few of these thoughts, but be forewarned about vampires in space.
+- *[Blindsight](https://www.amazon.com/Blindsight-Peter-Watts/dp/0765312182)* by Peter Watts is a recommended read that inspired a few of these thoughts, but be forewarned about vampires in space.
 - The term "spandrel" originates from architecture, where it refers to the roughly triangular spaces between the top of an arch and the ceiling. But, also used in evolutionary biology to reference a byproduct of the evolution of some other characteristic, rather than a direct product of evolution. The human navel is a spandrel.
 
 ---
