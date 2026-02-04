@@ -36,3 +36,5 @@ I look forward to the new landscape of products that find the sweet spot: using 
 ---
 
 *Originally published on [Haecceity](https://haecceity.substack.com/p/slop-on-the-internet-and-walled-gardens)*
+
+
