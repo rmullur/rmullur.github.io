@@ -1,18 +1,21 @@
 # Rishi Mullur
 
-## About
 > Rishi Mullur is a builder of things — mostly software, sometimes systems, occasionally organizations. He has been a programmer, a product manager, and a founder, depending on what needed to get built at the moment. Based in San Francisco Bay Area.
 
+## Site Structure
 
-## Contact & Social Links
+- [Home](https://rishim.xyz/): Main page with author bio and latest writings
+- [About](https://rishim.xyz/about): Detailed profile and background
+- [Writing](https://rishim.xyz/writing): Essays and reflections on technology, software, and craft
+
+## Writing
+
+- [Can the Real Homunculus Please Stand Up?](https://rishim.xyz/writing/can-the-real-homunculus-please-stand-up): On consciousness, intelligence, and the little voice in your head.
+- [Slop on the Internet and Walled Gardens](https://rishim.xyz/writing/slop-on-the-internet-and-walled-gardens): On the age of generated content, the erosion of implicit trust, and the rise of curated digital sanctuaries.
+
+## Contact
 
 - Email: rishi.rmullur@gmail.com
 - LinkedIn: https://linkedin.com/in/rishimullur
 - Twitter/X: https://twitter.com/rishimullur
 - Substack (Haecceity): https://haecceity.substack.com/
-
-## Site Structure
-
-- [Home](https://rmullur.github.io/): Main page with author bio and latest writings
-- [About](https://rmullur.github.io/about): Detailed profile and background
-- [Writing](https://rmullur.github.io/writing): Essays and reflections on technology, software, and craft
