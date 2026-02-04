@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rishim.xyz/sitemap-index.xml
+
